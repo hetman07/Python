@@ -14,6 +14,13 @@ sales = [
     ("Monitor", 10, 300),
     ("Chair", 20, 800),
 ]
+def calc_revenue(sales):
+    return dict(
+        sorted(
+            map(lambda item: (item[0], item[1] * item[2]), sales),
+            key=lambda x: x[1],
+            reverse=True,
+        )
+    )
 
-revenue_products = sorted(map(lambda item: (item[0], item[1]*item[2]), sales), key=lambda x: x[1], reverse=True)
-print(list(revenue_products))
+print(calc_revenue(sales))
