@@ -1,3 +1,10 @@
+# Извлечение дат
+
+# Реализуйте программу, которая должна:
+
+# Найти в тексте все даты в форматах 
+# DD/MM/YYYY, DD-MM-YYYY и DD.MM.YYYY.
+
 import re
 from datetime import datetime
 
@@ -9,7 +16,7 @@ Meeting on 2024-05-10 or 10/05/2024 at 14:30,
 pattern = r"\b(0?[1-9]|[12][0-9]|3[01])([./-])(0?[1-9]|1[0-2])\2(\d{4})\b"
 
 date_from_text = re.findall(
-    r"\b(\d{2}/\d{2}/\d{4}|\d{2}-\d{2}-\d{4}|\d{2}\.\d{2}\.\d{4})\b", text
+    r"\b(\d{2}[/.-]\d{2}[/.-]\d{4})\b", text
 )
 print("version 1: ", date_from_text)
 
