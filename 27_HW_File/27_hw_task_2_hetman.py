@@ -19,18 +19,25 @@ input_namefile = input("Enter the name of file for searching: ").lower()
 base_path = f"{os.getcwd()}/27_File"
 
 inp_file_path = os.path.join(base_path, input_namefile)
+output_path = os.path.join(base_path, f"unique_{input_namefile}")
 
-unique_lst = []
+unique_lst = set()
 
 try:
     with (
         open(inp_file_path, "r", encoding="utf-8") as file,
-        open(f"27_File/unique_{input_namefile}", "w", encoding="utf-8") as out_file,
+        open(output_path, "w", encoding="utf-8") as out_file,
     ):
-        for item in file.readlines():
+        for item in file:
             if item not in unique_lst:
-                unique_lst.append(item)
-        out_file.writelines(unique_lst)
-        print(f"Dublicate was deleted and saved in unique_{input_namefile}")
+                unique_lst.add(item)
+                out_file.write(item)
+                
+    print(f"Duplicates were removed and saved in unique_{input_namefile}")
 except FileNotFoundError:
     print(f"{input_namefile} is not found.")
+    
+
+# if not os.path.exists(original_filename):                       # проверяем существование исходного файла
+#     print(f"Ошибка: файл '{original_filename}' не найден.")     # выводим сообщение об ошибке
+#     return                                                      # прерываем выполнение функции
