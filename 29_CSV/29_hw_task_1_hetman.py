@@ -47,13 +47,14 @@ for subject, rows in buckets.items():
         writer = csv.writer(f) 
         writer.writerow(["name", "grade"])
         writer.writerows(rows)
+        # csv.writer(f).writerows([["name", "grade"]] + rows) версия преподавателя короче код
 
-    grades = [grade for _, grade in rows]
-    stats_rows. append({"subject": subject, **count_statistic_data(grades)})
+    grades = [grade for _, grade in rows] #оставим только оценки
+    stats_rows.append({"subject": subject, **count_statistic_data(grades)})
 
 fields = ["subject", "avg", "min", "max", "median", "stdev"]   
 
 with open(f"{BASE_PATH}/grades-info.csv", "w", encoding="utf-8", newline="") as f:
-    writer = csv.DictWriter(f, fieldnames=fields)
+    writer = csv.DictWriter(f, fieldnames = fields)
     writer.writeheader()
     writer.writerows(stats_rows)    
