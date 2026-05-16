@@ -14,7 +14,11 @@ class User:
     def __init__(self, username, password):
         self.username = username
         self.password = password
-        User.total_users += 1
+        self.total_users = self.increment_users()
+    
+    @classmethod
+    def increment_users(cls):
+        cls.total_users += 1
 
     @classmethod
     def get_total(cls):
@@ -24,5 +28,5 @@ class User:
 user1 = User("Vita", "qwer12")
 user2 = User("Vita", "qwer12")
 user3 = User("Vita", "qwer12")
-user1 = User("Vita", "qwer12")
+
 print(User.get_total())
