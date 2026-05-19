@@ -17,27 +17,35 @@ class User:
     total_users = 0
 
     def __init__(self, username, password):
-        self.is_valid_username(username)
-        self.is_valid_password(password)
+        self.username = self.validate_username(username)
+        self.password = self.validate_password(password)
 
-        self.username = username
-        self.password = password
-
-        User.total_users += 1
+        User.increment_users()
 
     @classmethod
     def get_total(cls):
         return f"Total users: {cls.total_users}"
+    
+    @classmethod
+    def increment_users(cls):
+        cls.total_users += 1
 
     @staticmethod
-    def is_valid_username(username):
+    def validate_username(username):
         if not isinstance(username, str) or not username.strip():
             raise ValueError("Username is empty.")
+        
+        return username.strip()
 
     @staticmethod
-    def is_valid_password(password):
+    def validate_password(password):
+        if not isinstance(password, str):
+            raise ValueError("The password must be a string.")
+        
         if len(password) < 5:
             raise ValueError("The password should be longer than 5 symbols.")
+        
+        return password
 
     def __str__(self):
         return f"User: {self.username}, {self.password}"
@@ -50,6 +58,6 @@ print(user2)
 print(User.get_total())
 # user3 = User("      ", "qwer12")
 # print(user3)
-user4 = User("Olha", "qwe")
-print(user4)
+# user4 = User("Olha", "qwe")
+# print(user4)
 print(User.get_total())
