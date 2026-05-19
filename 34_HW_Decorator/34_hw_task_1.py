@@ -14,7 +14,8 @@ class User:
     def __init__(self, username, password):
         self.username = username
         self.password = password
-        self.total_users = self.increment_users()
+        
+        User.increment_users()
     
     @classmethod
     def increment_users(cls):
