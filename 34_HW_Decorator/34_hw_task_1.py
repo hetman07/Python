@@ -15,7 +15,7 @@ class User:
         self.username = username
         self.password = password
         
-        User.increment_users()
+        self.increment_users()
     
     @classmethod
     def increment_users(cls):
