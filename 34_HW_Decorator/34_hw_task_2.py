@@ -20,7 +20,7 @@ class User:
         self.username = self.validate_username(username)
         self.password = self.validate_password(password)
 
-        User.increment_users()
+        self.increment_users()
 
     @classmethod
     def get_total(cls):
