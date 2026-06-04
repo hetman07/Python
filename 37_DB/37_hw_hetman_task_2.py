@@ -24,12 +24,12 @@ inp_country = input("Enter the name of the coutry for searching: ").capitalize()
 
 with connection.cursor() as cursor:
     cursor.execute("USE world")
-    query = """SELECT i.name, i.population
-                FROM city i
-                WHERE CountryCode in (SELECT c.code 
-                                        FROM country c 
-                                      WHERE c.name = %s) 
-                LIMIT 100
+    query = """
+    SELECT i.name, i.population
+    FROM city i
+    JOIN country c ON i.CountryCode = c.Code 
+    WHERE c.name = 'Germany' 
+    LIMIT 100
     """
     cursor.execute(query, (inp_country,))
     for name, population in cursor.fetchall():
