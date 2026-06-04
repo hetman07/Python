@@ -25,7 +25,7 @@ symbol = input("Enter the symbol(action): ").upper()
 params = {
     "function": "TIME_SERIES_MONTHLY",
     "symbol": symbol,
-    "apikey": "QPXQ8IJWOAC68L23",
+    "apikey": "",
     "datatype": "csv",
 }
 r = requests.get(BASE_URL, params=params)
